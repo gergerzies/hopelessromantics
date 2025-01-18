@@ -57,7 +57,6 @@ class TransparentWindow(QWidget):
 
         # Create the exit button and add to layout
         self.exit_button = QPushButton(self)
-        self.exit_button.setIcon(QIcon('images/exit_button.png'))
         self.exit_button.setStyleSheet(
             f"""
             QPushButton {{
@@ -119,7 +118,7 @@ class TransparentWindow(QWidget):
                 background-position: center; 
                 background-repeat: no-repeat;
                 border: none;
-                background-size: cover;
+                background-size: fill;
             }}
             QPushButton:hover {{
                 background-image: url(images/begin_buttonpress.png); 
@@ -203,11 +202,11 @@ class TransparentWindow(QWidget):
         self.exit_button.resize(button_width, button_height)
         self.exit_button.move(button_width//8 ,
                                 window_height - button_height*4)
-
+        
         # Resize the custom button
-        self.blush_button.resize(button_width, button_height * 2)
+        self.blush_button.resize(button_width, button_height*7//3)
         self.blush_button.move(button_width//8 ,
-                                window_height - button_height*5//2)
+                                window_height - button_height*3)
         
 
         
@@ -229,8 +228,8 @@ class TransparentWindow(QWidget):
 
 
         # Resize toggle button
-        self.toggle_button.resize(button_width, button_height)
-        self.toggle_button.move((window_width - button_width)// 2, window_height //4*3)
+        self.toggle_button.resize(button_width//2*3, button_height)
+        self.toggle_button.move((window_width - (button_width//2*3))// 2, window_height //3*2 + button_height//2*3)
 
 
 
