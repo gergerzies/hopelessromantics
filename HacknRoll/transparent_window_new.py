@@ -64,14 +64,12 @@ class TransparentWindow(QWidget):
                 background-position: center; 
                 background-repeat: no-repeat;
                 border: none;
-                background-size: cover;
             }}
             QPushButton:hover {{
                 background-image: url(images/exit_buttonpress.png); 
                 background-position: center; 
                 background-repeat: no-repeat;
                 border: none;
-                background-size: cover;
             }}"""
         )
         self.exit_button.clicked.connect(self.close)
@@ -85,14 +83,12 @@ class TransparentWindow(QWidget):
                 background-position: center; 
                 background-repeat: no-repeat;
                 border: none;
-                background-size: cover;
             }}
             QPushButton:hover {{
                 background-image: url(images/blush_buttonpress.png); 
                 background-position: center; 
                 background-repeat: no-repeat;
                 border: none;
-                background-size: cover;
             }}"""
         )
         
@@ -118,14 +114,12 @@ class TransparentWindow(QWidget):
                 background-position: center; 
                 background-repeat: no-repeat;
                 border: none;
-                background-size: fill;
             }}
             QPushButton:hover {{
                 background-image: url(images/begin_buttonpress.png); 
                 background-position: center; 
                 background-repeat: no-repeat;
                 border: none;
-                background-size: cover;
             }}"""
         )
         self.toggle_button.clicked.connect(self.toggle_speech_recognition)
@@ -135,7 +129,7 @@ class TransparentWindow(QWidget):
         self.animation_timer.timeout.connect(self.update_text)
         self.text_to_display = ""
         self.current_text_index = 0
-        self.text_speed = 50  # Speed in milliseconds between characters
+        self.text_speed = 20  # Speed in milliseconds between characters
 
 
     def toggle_speech_recognition(self):
@@ -231,8 +225,6 @@ class TransparentWindow(QWidget):
         self.toggle_button.resize(button_width//2*3, button_height)
         self.toggle_button.move((window_width - (button_width//2*3))// 2, window_height //3*2 + button_height//2*3)
 
-
-
     def paintEvent(self, event):
         # Paint the scaled background image with fixed aspect ratio
         painter = QPainter(self)
@@ -269,9 +261,9 @@ class TransparentWindow(QWidget):
         self.animation_timer = QTimer(self)
         self.animation_timer.timeout.connect(self.update_text)
 
-        self.text_to_display = ""
-        self.current_text_index = 0
-        self.text_speed = 20  # Speed in milliseconds between characters
+        # self.text_to_display = ""
+        # self.current_text_index = 0
+        # self.text_speed = 20  # Speed in milliseconds between characters
 
 
 
@@ -284,7 +276,7 @@ class SpeechRecognizerWorker(QThread):
         super().__init__()
         self.is_listening = True
         self.recognizer = sr.Recognizer()
-        self.microphone = sr.Microphone()
+        self.microphone = sr.Microphone(device_index=2)
         self.stop_event = False  # Signal for stopping the worker
 
     def run(self):
