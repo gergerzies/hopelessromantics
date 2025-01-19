@@ -23,12 +23,10 @@ def translate_gemini(text):
         system_instruction="You are a poet that translates everyday speech into romantic speech")
 
     response = model.generate_content(
-        "Translate the following:" + text,
+        "Translate the following: " + text,
         generation_config = genai.GenerationConfig(
-            max_output_tokens=50,
-            temperature=0.9,
-            candidate_count=1,
-            stop_sequences=['.']
+            max_output_tokens=100,
+            temperature=0.8,
         )
     )
 
